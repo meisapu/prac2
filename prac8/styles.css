@@ -1,0 +1,30 @@
+body {
+    font-family: Arial;
+    text-align: center;
+    background-color: #f2f2f2;
+}
+
+.calculator {
+    background-color: white;
+    width: 300px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid gray;
+}
+
+input, select {
+    width: 80%;
+    padding: 5px;
+    margin: 5px;
+}
+
+button {
+    padding: 5px 15px;
+    background-color: lightblue;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: skyblue;
+}

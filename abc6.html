@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #efdbf8;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background: rgb(225, 221, 228);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px gray;
+      width: 300px;
+      text-align: center;
+    }
+
+    h2 {
+      color: rgb(67, 7, 85);
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+
+    .error {
+      color: rgb(252, 39, 57);
+      font-size: 13px;
+      text-align: left;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 8px;
+      width: 100%;
+      background-color: rgb(176, 88, 235);
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: rgb(84, 13, 105);
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Simple Form Validation</h2>
+
+<form id="myForm">
+
+  <input type="text" id="name" placeholder="Name">
+  <div id="nameError" class="error"></div>
+
+  <input type="text" id="email" placeholder="Email">
+  <div id="emailError" class="error"></div>
+
+  <input type="text" id="contact" placeholder="Contact Number">
+  <div id="contactError" class="error"></div>
+
+  <input type="password" id="password" placeholder="Password">
+  <div id="passwordError" class="error"></div>
+
+  <button type="submit">Submit</button>
+
+</form>
+
+</div>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let contact = document.getElementById("contact").value.trim();
+    let password = document.getElementById("password").value.trim();
+
+    let nameError = document.getElementById("nameError");
+    let emailError = document.getElementById("emailError");
+    let contactError = document.getElementById("contactError");
+    let passwordError = document.getElementById("passwordError");
+
+    // Clear previous errors
+    nameError.innerHTML = "";
+    emailError.innerHTML = "";
+    contactError.innerHTML = "";
+    passwordError.innerHTML = "";
+
+    let isValid = true;
+
+    // Name validation
+    if (name === "") {
+        nameError.innerHTML = "Name is required!";
+        isValid = false;
+    }
+
+    // Email validation
+    if (email === "") {
+        emailError.innerHTML = "Email is required!";
+        isValid = false;
+    } else {
+        let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (!email.match(emailPattern)) {
+            emailError.innerHTML = "Enter a valid email address!";
+            isValid = false;
+        }
+    }
+
+    // Contact validation (10 digits only)
+    let contactPattern = /^[0-9]{10}$/;
+    if (contact === "") {
+        contactError.innerHTML = "Contact number is required!";
+        isValid = false;
+    } else if (!contact.match(contactPattern)) {
+        contactError.innerHTML = "Enter a valid 10-digit number!";
+        isValid = false;
+    }
+
+    // Password validation
+    if (password === "") {
+        passwordError.innerHTML = "Password is required!";
+        isValid = false;
+    } else if (password.length < 6) {
+        passwordError.innerHTML = "Password must be at least 6 characters!";
+        isValid = false;
+    }
+
+    // If all valid
+    if (isValid) {
+        alert("Form submitted successfully!");
+    }
+});
+</script>
+
+</body>
+</html>
